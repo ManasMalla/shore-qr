@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { useRouter } from "next/navigation";
+import styles from "./home.module.css";
 
 export default function Home() {
   const [scanResult, setScanResult] = useState<string | null>(null);
@@ -50,23 +51,23 @@ export default function Home() {
   }, [router]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-teal-50 via-white to-blue-50">
-      <div className="max-w-2xl w-full space-y-12">
-        <div className="space-y-4 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--shore-teal)] to-[var(--shore-ocean)] tracking-tight">
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>
             Shore Mystery
           </h1>
-          <p className="text-xl text-gray-500 font-light tracking-wide">
+          <p className={styles.subtitle}>
             Scan the code to unlock the secret
           </p>
         </div>
 
-        <div className="glass p-8 rounded-3xl shadow-2xl mx-auto max-w-md w-full animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          <div id="reader" className="w-full overflow-hidden rounded-2xl border-2 border-gray-100"></div>
+        <div className={`glass ${styles.scannerCard}`}>
+          <div id="reader" className={styles.scannerWrapper}></div>
         </div>
 
         {scanResult && (
-          <div className="p-4 bg-green-50 text-green-700 rounded-xl border border-green-100 animate-fade-in">
+          <div className={styles.successMessage}>
             Redirecting you to the mystery...
           </div>
         )}

@@ -1,0 +1,106 @@
+.main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff, #e3f2fd);
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  max-width: 42rem;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.mascotWrapper {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.mascot {
+  width: 16rem;
+  height: 16rem;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
+}
+
+@media (min-width: 768px) {
+  .mascot {
+    width: 24rem;
+    height: 24rem;
+  }
+}
+
+.messageCard {
+  padding: 3rem;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--shore-dark);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.75rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #4b5563;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(to right, var(--shore-teal), var(--shore-ocean));
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.redirectText {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 1s;
+  opacity: 0; /* Start hidden for animation */
+}

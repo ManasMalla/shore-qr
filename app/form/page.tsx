@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import styles from "../form.module.css";
 
 export default function FormPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -32,15 +33,15 @@ export default function FormPage() {
 
   if (submitted) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-teal-50 to-blue-50">
-        <div className="glass p-12 rounded-3xl shadow-2xl max-w-lg w-full animate-fade-in">
-          <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+      <main className={styles.successWrapper}>
+        <div className={`glass ${styles.successCard}`}>
+          <div className={styles.successIcon}>
             ✓
           </div>
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          <h1 className={styles.successTitle}>
             You're In!
           </h1>
-          <p className="text-lg text-gray-600 font-light">
+          <p className={styles.successMessage}>
             Your response has been recorded. Get ready for the waves of SHORE'26!
           </p>
         </div>
@@ -49,23 +50,23 @@ export default function FormPage() {
   }
 
   return (
-    <main className="min-h-screen py-12 px-4 md:py-24 md:px-8 bg-gradient-to-br from-teal-50 via-white to-blue-50">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-12 md:mb-20 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>
             Unlock the Mystery
           </h1>
-          <p className="text-lg md:text-2xl text-gray-500 font-light">
+          <p className={styles.subtitle}>
             Tell us your wildest dreams for the fest
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-y-12 md:space-y-16 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           
           {/* Section 1: Basics */}
-          <div className="glass p-6 md:p-10 rounded-3xl gap-16 flex flex-col md:space-y-10">
-            <div className="space-y-3">
-              <label htmlFor="name" className="block text-sm font-bold text-gray-500 uppercase tracking-wider ml-1">
+          <div className={styles.card}>
+            <div className={styles.fieldGroup}>
+              <label htmlFor="name" className={styles.label}>
                 Your Name
               </label>
               <input
@@ -73,13 +74,13 @@ export default function FormPage() {
                 id="name"
                 name="entry.1637171628"
                 required
-                className="glass-input w-full p-4 md:p-5 rounded-2xl text-lg outline-none text-gray-800 placeholder-gray-400"
+                className={styles.input}
                 placeholder="John Doe"
               />
             </div>
 
-            <div className="space-y-3">
-              <label htmlFor="email" className="block text-sm font-bold text-gray-500 uppercase tracking-wider ml-1">
+            <div className={styles.fieldGroup}>
+              <label htmlFor="email" className={styles.label}>
                 Email Address
               </label>
               <input
@@ -87,56 +88,54 @@ export default function FormPage() {
                 id="email"
                 name="entry.69633790"
                 required
-                className="glass-input w-full p-4 md:p-5 rounded-2xl text-lg outline-none text-gray-800 placeholder-gray-400"
+                className={styles.input}
                 placeholder="john@example.com"
               />
             </div>
           </div>
 
           {/* Section 2: Vibe Check */}
-          <div className="glass p-6 md:p-10 rounded-3xl space-y-10">
-            <div className="space-y-6">
-              <label className="block text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+          <div className={styles.card}>
+            <div className={styles.fieldGroup}>
+              <label className={styles.questionLabel}>
                 If SHORe Fest were a feeling, what would it be?
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              <div className={styles.grid}>
                 {["Wild", "Nostalgic", "Chill", "Electric", "Connected", "Euphoric"].map((option) => (
-                  <label key={option} className="relative group flex cursor-pointer">
+                  <label key={option} className={styles.radioLabel}>
                     <input
                       type="radio"
                       name="entry.1737925053"
                       value={option}
-                      className="peer"
+                      className={styles.radioInput}
                     />
-                    <div className="p-4 md:p-6 rounded-2xl hover:bg-white transition-all peer-checked:border-[var(--shore-teal)] peer-checked:bg-teal-50 peer-checked:text-[var(--shore-teal)] peer-checked:shadow-md text-center font-medium text-gray-600 text-lg w-max">
-                      {option}
-                    </div>
+                    <span className={styles.radioText}>{option}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-6">
-              <label htmlFor="artist" className="block text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+            <div className={styles.fieldGroup}>
+              <label htmlFor="artist" className={styles.questionLabel}>
                 Which artist has the crowd screaming every word?
               </label>
               <input
                 type="text"
                 id="artist"
                 name="entry.1071965879"
-                className="glass-input w-full p-4 md:p-5 rounded-2xl text-lg outline-none text-gray-800 placeholder-gray-400"
-                placeholder="e.g. The Weeknd, Taylor Swift..."
+                className={styles.input}
+                placeholder="e.g. The Weeknd..."
               />
             </div>
           </div>
 
           {/* Section 3: Experiences */}
-          <div className="glass p-6 md:p-10 rounded-3xl space-y-10">
-            <div className="space-y-6">
-              <label className="block text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+          <div className={styles.card}>
+            <div className={styles.fieldGroup}>
+              <label className={styles.questionLabel}>
                 Secret experiences that would make it legendary?
               </label>
-              <div className="space-y-4">
+              <div className={styles.grid}>
                 {[
                   "Interactive Art Installations",
                   "Silent Disco (with a mystery genre?)",
@@ -146,16 +145,14 @@ export default function FormPage() {
                   "Gaming/VR Zone",
                   "Mystery Workshop (e.g., DIY, dance, mixology)"
                 ].map((option) => (
-                  <label key={option} className="flex items-start space-x-4 p-4 rounded-2xl hover:bg-white/50 transition-colors cursor-pointer active:bg-white/80">
-                    <div className="flex-shrink-0 mt-1">
-                      <input
-                        type="checkbox"
-                        name="entry.1921250719"
-                        value={option}
-                        className="w-6 h-6 text-[var(--shore-teal)] rounded-lg border-gray-300 focus:ring-[var(--shore-teal)]"
-                      />
-                    </div>
-                    <span className="text-lg text-gray-700 leading-snug">{option}</span>
+                  <label key={option} className={styles.checkboxLabel}>
+                    <input
+                      type="checkbox"
+                      name="entry.1921250719"
+                      value={option}
+                      className={styles.checkboxInput}
+                    />
+                    <span className={styles.checkboxText}>{option}</span>
                   </label>
                 ))}
               </div>
@@ -163,52 +160,52 @@ export default function FormPage() {
           </div>
 
           {/* Section 4: The Big Ideas */}
-          <div className="glass p-6 md:p-10 rounded-3xl space-y-10">
-            <div className="space-y-6">
-              <label htmlFor="food" className="block text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+          <div className={styles.card}>
+            <div className={styles.fieldGroup}>
+              <label htmlFor="food" className={styles.questionLabel}>
                 Must-have festival food or drink?
               </label>
               <input
                 type="text"
                 id="food"
                 name="entry.1828563634"
-                className="glass-input w-full p-4 md:p-5 rounded-2xl text-lg outline-none text-gray-800 placeholder-gray-400"
+                className={styles.input}
                 placeholder="Be specific!"
               />
             </div>
 
-            <div className="space-y-6">
-              <label htmlFor="onething" className="block text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+            <div className={styles.fieldGroup}>
+              <label htmlFor="onething" className={styles.questionLabel}>
                 One thing to make SHORE'26 the talk of campus?
               </label>
               <textarea
                 id="onething"
                 name="entry.667833844"
-                rows={5}
-                className="glass-input w-full p-4 md:p-5 rounded-2xl text-lg outline-none text-gray-800 placeholder-gray-400 resize-none leading-relaxed"
+                rows={6}
+                className={styles.textarea}
                 placeholder="No idea is too big..."
               ></textarea>
             </div>
           </div>
 
           {/* Section 5: Secret Agent */}
-          <div className="glass p-6 md:p-10 rounded-3xl space-y-8">
-            <label className="block text-xl md:text-2xl font-medium text-gray-800 leading-relaxed">
+          <div className={styles.card}>
+            <label className={styles.questionLabel}>
               Want to be a secret agent for the fest?
             </label>
-            <div className="space-y-4">
+            <div className={styles.grid}>
               {[
                 "Yes! Consider Me in!🥳",
                 "Nah! Not This Time, but keep me posted😊"
               ].map((option) => (
-                <label key={option} className="flex items-center space-x-4 p-5 rounded-2xl border border-transparent bg-white/30 hover:bg-white/60 hover:border-gray-200 transition-all cursor-pointer shadow-sm">
+                <label key={option} className={styles.radioLabel}>
                   <input
                     type="radio"
                     name="entry.709184390"
                     value={option}
-                    className="w-6 h-6 text-[var(--shore-teal)] focus:ring-[var(--shore-teal)]"
+                    className={styles.radioInput}
                   />
-                  <span className="text-lg text-gray-800 font-medium">{option}</span>
+                  <span className={styles.radioText}>{option}</span>
                 </label>
               ))}
             </div>
@@ -217,7 +214,7 @@ export default function FormPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-6 bg-gradient-to-r from-[var(--shore-teal)] to-[var(--shore-ocean)] text-white text-xl md:text-2xl font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed mb-12"
+            className={styles.submitButton}
           >
             {loading ? "Sending..." : "Submit Your Vision"}
           </button>
