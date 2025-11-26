@@ -14,18 +14,35 @@ export default function FormPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
     
-    const GOOGLE_FORM_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScaSjf33bc8L7uaReF3TGe0JDBc7vlv81qMb2w13g4YM9GUeQ/formResponse";
-    
+    // START: Checkbox Handling
+    // The 'experiences' checkboxes will create multiple entries in FormData.
+    // Google Sheets often overwrites duplicates, so we join them into one string.
+    const experiences = formData.getAll("experiences");
+    // Remove the individual entries so we can add the combined one
+    formData.delete("experiences"); 
+    // Add the combined string back
+    formData.append("experiences", experiences.join(", "));
+    // END: Checkbox Handling
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxD_bhFV8fda4j4x46aX-B_0Bm0fmvm_pEVJcJY1fXm9gIaAOZ5WpaYpdswqaZ6souF/exec';
+
     try {
-      await fetch(GOOGLE_FORM_URL, {
-        method: "POST",
-        mode: "no-cors",
+      const response = await fetch(scriptURL, {
+        method: 'POST',
         body: formData,
       });
-      setSubmitted(true);
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error('Submission failed');
+        setLoading(false);
+        alert('Submission failed. Please try again.');
+      }
     } catch (error) {
-      console.error("Submission error:", error);
-      alert("Something went wrong. Please try again.");
+      console.error('Error!', error);
+      setLoading(false);
+      alert('Submission failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -34,7 +51,7 @@ export default function FormPage() {
   if (submitted) {
     return (
       <main className={styles.successWrapper}>
-        <div className={`glass ${styles.successCard}`}>
+        <div className={styles.successCard}>
           <div className={styles.successIcon}>
             ✓
           </div>
@@ -72,7 +89,7 @@ export default function FormPage() {
               <input
                 type="text"
                 id="name"
-                name="entry.1637171628"
+                name="name"
                 required
                 className={styles.input}
                 placeholder="John Doe"
@@ -86,7 +103,7 @@ export default function FormPage() {
               <input
                 type="email"
                 id="email"
-                name="entry.69633790"
+                name="email"
                 required
                 className={styles.input}
                 placeholder="john@example.com"
@@ -105,7 +122,7 @@ export default function FormPage() {
                   <label key={option} className={styles.radioLabel}>
                     <input
                       type="radio"
-                      name="entry.1737925053"
+                      name="feeling"
                       value={option}
                       className={styles.radioInput}
                     />
@@ -122,7 +139,7 @@ export default function FormPage() {
               <input
                 type="text"
                 id="artist"
-                name="entry.1071965879"
+                name="artist"
                 className={styles.input}
                 placeholder="e.g. The Weeknd..."
               />
@@ -148,7 +165,7 @@ export default function FormPage() {
                   <label key={option} className={styles.checkboxLabel}>
                     <input
                       type="checkbox"
-                      name="entry.1921250719"
+                      name="experiences"
                       value={option}
                       className={styles.checkboxInput}
                     />
@@ -168,7 +185,7 @@ export default function FormPage() {
               <input
                 type="text"
                 id="food"
-                name="entry.1828563634"
+                name="food"
                 className={styles.input}
                 placeholder="Be specific!"
               />
@@ -180,7 +197,7 @@ export default function FormPage() {
               </label>
               <textarea
                 id="onething"
-                name="entry.667833844"
+                name="onething"
                 rows={6}
                 className={styles.textarea}
                 placeholder="No idea is too big..."
@@ -201,7 +218,7 @@ export default function FormPage() {
                 <label key={option} className={styles.radioLabel}>
                   <input
                     type="radio"
-                    name="entry.709184390"
+                    name="secretagent"
                     value={option}
                     className={styles.radioInput}
                   />

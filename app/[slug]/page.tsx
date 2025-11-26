@@ -46,16 +46,6 @@ export default function SlugPage({ params }: { params: Promise<{ slug: string }>
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <div className={`${styles.mascotWrapper} animate-float`}>
-          <Image
-            src="/gitphin.jpg"
-            alt="Gitphin Mascot"
-            width={400}
-            height={400}
-            className={styles.mascot}
-            priority
-          />
-        </div>
 
         <div className={`glass ${styles.messageCard}`}>
           <h1 className={styles.title}>
@@ -72,7 +62,16 @@ export default function SlugPage({ params }: { params: Promise<{ slug: string }>
         >
           Get Started Now
         </button>
-
+<div className={`${styles.mascotWrapper}`}>
+          <Image
+            src="/gitfin.png"
+            alt="Gitphin Mascot"
+            width={600}
+            height={600}
+            className={styles.mascot}
+            priority
+          />
+        </div>
 
       </div>
     </main>

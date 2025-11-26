@@ -4,9 +4,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
   text-align: center;
-  background: linear-gradient(to bottom right, #e0f7fa, #ffffff, #e3f2fd);
+  background: url('/bg.png') no-repeat center center/cover;
   overflow: hidden;
   position: relative;
 }
@@ -25,25 +24,27 @@
 }
 
 .mascot {
-  width: 16rem;
-  height: 16rem;
+  width: 28rem;
+  height: 28rem;
   object-fit: contain;
   filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
 }
 
 @media (min-width: 768px) {
   .mascot {
-    width: 24rem;
-    height: 24rem;
+    width: 28rem;
+    height: 28rem;
   }
 }
 
 .messageCard {
-  padding: 3rem;
-  border-radius: 2rem;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 20rem;
   animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   animation-delay: 0.2s;
+  background-color: #FFFFFF80;
+  transform: scale(0.8);
+  
 }
 
 .title {
@@ -75,12 +76,11 @@
 .button {
   display: inline-block;
   padding: 1rem 2.5rem;
-  background: linear-gradient(to right, var(--shore-teal), var(--shore-ocean));
-  color: white;
+  background: white;
+  color: black;
   font-size: 1.25rem;
   font-weight: 700;
   border-radius: 9999px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   text-decoration: none;
   border: none;
